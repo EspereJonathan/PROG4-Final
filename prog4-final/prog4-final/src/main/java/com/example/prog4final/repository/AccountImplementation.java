@@ -47,6 +47,24 @@ public class AccountImplementation implements AccountDAO {
 
     @Override
     public List<Account> findById(int id_account) {
-        return null;
+        List<Account> oneAccount=new ArrayList<>();
+        String sql="SELECT * FROM account WHERE id_account= ? ";
+        try (PreparedStatement preparedStatement= connection.prepareStatement(sql)){
+            preparedStatement.setInt(1,id_account);
+            ResultSet resultSet =preparedStatement.executeQuery();
+            while (resultSet.next()){
+                oneAccount.add(new Account(
+                        resultSet.getInt("id_account"),
+                        resultSet.getString("lastName"),
+                        resultSet.getString("firstName"),
+                        resultSet.getDate("birthDate"),
+                        resultSet.getDouble("salary"),
+                        resultSet.getString("accountNumber")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    return oneAccount;
     }
+
 }

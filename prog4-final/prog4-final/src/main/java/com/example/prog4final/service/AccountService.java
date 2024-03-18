@@ -15,8 +15,8 @@ public class AccountService {
     public List<Account> findAllAccount() throws SQLException {
         return accountImplementation.findAll();
     }
-    public List<Account> findIdAccount() throws SQLException {
-        return accountImplementation.findID();
+    public List<Account> findOneAccount(int id_account) throws SQLException {
+        return accountImplementation.findById(id_account);
     }
 
 }

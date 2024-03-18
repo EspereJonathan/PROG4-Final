@@ -4,6 +4,7 @@ import com.example.prog4final.model.Account;
 import com.example.prog4final.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
@@ -18,8 +19,8 @@ public class AccountController {
     public List<Account> findAllAccount()throws SQLException{
         return accountService.findAllAccount();
     }
-    @GetMapping("/idAccount")
-    public List<Account> findIdAccount() throws SQLException {
-        return  accountService.findIdAccount();
+    @GetMapping("/account/{idAccount}")
+    public List<Account> findOneAccount(@PathVariable int idAccount ) throws SQLException {
+        return  accountService.findOneAccount(idAccount);
     }
 }
