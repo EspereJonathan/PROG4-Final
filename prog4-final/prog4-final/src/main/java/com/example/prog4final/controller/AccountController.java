@@ -3,9 +3,7 @@ package com.example.prog4final.controller;
 import com.example.prog4final.model.Account;
 import com.example.prog4final.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -22,5 +20,9 @@ public class AccountController {
     @GetMapping("/account/{idAccount}")
     public List<Account> findOneAccount(@PathVariable int idAccount ) throws SQLException {
         return  accountService.findOneAccount(idAccount);
+    }
+    @PostMapping("/insertAccount")
+    public Account insertAccount(@RequestBody Account account)throws SQLException{
+        return accountService.insertAccount(account);
     }
 }

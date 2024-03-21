@@ -9,4 +9,5 @@ public interface AccountDAO {
     void insert(Account account);
     List<Account> findAll() throws SQLException;
     List<Account> findById(int id_account) throws SQLException;
+    void upDate(Account account);
 }

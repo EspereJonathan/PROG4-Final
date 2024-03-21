@@ -1,14 +1,12 @@
 package com.example.prog4final.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @ToString
 public class Account {
@@ -18,4 +16,6 @@ public class Account {
     private Date birthDate;
     private double salary;
     private String accountNumber;
+
+
 }

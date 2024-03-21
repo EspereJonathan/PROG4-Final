@@ -19,4 +19,9 @@ public class AccountService {
         return accountImplementation.findById(id_account);
     }
 
+    public Account insertAccount(Account account) throws SQLException{
+        accountImplementation.insert(account);
+        return account;
+    }
+
 }
