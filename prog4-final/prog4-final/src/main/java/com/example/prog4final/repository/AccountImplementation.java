@@ -53,6 +53,9 @@ public class AccountImplementation implements AccountDAO {
                 ));
             }
         }
+        catch (SQLException e) {
+            System.out.println("---un erreur se produit lors de l'execution---"+e.getMessage());
+        }
         return allAccount;
     }
 
