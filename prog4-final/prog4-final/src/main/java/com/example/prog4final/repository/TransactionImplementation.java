@@ -53,7 +53,32 @@ public class TransactionImplementation implements TransactionDAO{
     }
 
     @Override
-    public List<Transaction> findByIdAccount(Account account) throws SQLException {
-        return null;
+    public List<Transaction> findByIdAccount(int id_account_transaction) throws SQLException {
+        List<Transaction> allTransactionOfAccount = new ArrayList<>();
+        String sql = "SELECT * from Transaction JOIN account ON transaction.id_account_transaction=account.id_account WHERE id_account=?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id_account_transaction);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                allTransactionOfAccount.add(new Transaction(
+                        resultSet.getInt("id_transaction"),
+                        resultSet.getTimestamp("dateTransaction"),
+                        resultSet.getDouble("amount"),
+                        resultSet.getString("type"),
+                        resultSet.getString("reason"),
+                        new Account(resultSet.getInt("id_account"),
+                                resultSet.getString("lastName"),
+                                resultSet.getString("firstName"),
+                                resultSet.getDate("birthDate"),
+                                resultSet.getDouble("salary"),
+                                resultSet.getString("accountNumber"))
+                ));
+
+            }
+        } catch (SQLException e) {
+            System.out.println("---un erreur se produit lors de l'execution---" + e.getMessage());
+
+        }
+        return allTransactionOfAccount;
     }
 }

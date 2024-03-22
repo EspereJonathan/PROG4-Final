@@ -10,5 +10,7 @@ public interface TransactionDAO {
     void insert(Transaction transaction);
 
     List<Transaction> findAll()throws SQLException;
-    List<Transaction> findByIdAccount(Account account) throws SQLException;
+    List<Transaction> findByIdAccount(int id_account) throws SQLException;
+
+
 }

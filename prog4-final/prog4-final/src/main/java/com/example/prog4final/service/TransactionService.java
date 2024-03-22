@@ -17,4 +17,7 @@ public class TransactionService {
     public List<Transaction> findAllTransaction()throws SQLException{
         return transactionImplementation.findAll();
     }
+    public List<Transaction> allTransaction(int id_account_transaction)throws SQLException{
+        return transactionImplementation.findByIdAccount(id_account_transaction);
+    }
 }
